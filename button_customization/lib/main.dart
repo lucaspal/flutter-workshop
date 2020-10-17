@@ -53,6 +53,16 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headline4,
             ),
+            Builder(
+              builder: (context) => RaisedButton(
+                onPressed: () => Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text('Button pressed $_counter times.'),
+                  ),
+                ),
+                child: Text('Show in SnackBar'),
+              ),
+            )
           ],
         ),
       ),
