@@ -55,6 +55,15 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Builder(
               builder: (context) => RaisedButton(
+                color: Colors.blue,
+                elevation: 7,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                  side: BorderSide(
+                    color: Colors.blue,
+                    width: 2
+                  ),
+                ),
                 onPressed: () => Scaffold.of(context).showSnackBar(
                   SnackBar(
                     content: Text('Button pressed $_counter times.'),
