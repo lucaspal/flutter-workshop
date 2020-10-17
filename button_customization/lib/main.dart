@@ -51,27 +51,32 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headline4,
             ),
             Builder(
-              builder: (context) => RaisedButton(
-                color: Colors.blue,
-                elevation: 7,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                  side: BorderSide(
+              builder: (context) =>
+                  RaisedButton(
                     color: Colors.blue,
-                    width: 2
+                    elevation: 7,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      side: BorderSide(
+                          color: Colors.blue,
+                          width: 2
+                      ),
+                    ),
+                    onPressed: () =>
+                        Scaffold.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text('Button pressed $_counter times.'),
+                          ),
+                        ),
+                    child: Text('Show in SnackBar'),
                   ),
-                ),
-                onPressed: () => Scaffold.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text('Button pressed $_counter times.'),
-                  ),
-                ),
-                child: Text('Show in SnackBar'),
-              ),
-            )
+            ),
           ],
         ),
       ),
