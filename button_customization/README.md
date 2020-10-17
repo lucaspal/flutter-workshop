@@ -1,16 +1,7 @@
 # button_customization
 
-A new Flutter project.
+Simple project showcasing how to work with `RaisedButton`. 
 
-## Getting Started
+Exercise: Style the button [defined here](https://github.com/lucaspal/flutter-workshop/blob/702d27ae47274ecbdc4e709280ab7e4b650df87f/button_customization/lib/main.dart#L57). Ideally the end result should show a *rounded button* with a *higher elevation* and with a *light blue border*.
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Solution: Available in the `customized-button` branch.
