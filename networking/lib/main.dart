@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:networking/send_informaion_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,40 +14,89 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Transform.scale(
-          scale: 0.7,
-          child: Image.asset('assets/logo.png'),
-        ),
-        title: Text(widget.title),
+        title: Text('Flutter workshop'),
       ),
       body: SendInformationWidget(),
+    );
+  }
+}
+
+class SendInformationWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20.0,
+        vertical: 40,
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Card(
+            elevation: 20,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            margin: EdgeInsets.all(10),
+            color: Colors.lightBlue,
+            child: ListTile(
+              contentPadding: EdgeInsets.all(10),
+              leading: Image.asset(
+                'assets/logo.png',
+                height: 60,
+              ),
+              title: Text('Greetings'),
+              subtitle: Text('nothing yet'),
+              onTap: () {
+                Scaffold.of(context).showSnackBar(SnackBar(content: Text('Pressed!')));
+              },
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              RaisedButton(
+                elevation: 20,
+                color: Colors.lightBlue[100],
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                onPressed: () {
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Get greetings pressed!'),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Get greetings',
+                ),
+              ),
+              RaisedButton(
+                elevation: 20,
+                color: Colors.lightBlue[100],
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                onPressed: () {
+                  Scaffold.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Reset pressed!'),
+                    ),
+                  );
+                },
+                child: Text(
+                  'Reset',
+                ),
+              ),
+            ],
+          )
+        ],
+      ),
     );
   }
 }
