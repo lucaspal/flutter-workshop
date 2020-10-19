@@ -66,8 +66,15 @@ class _SendInformationWidgetState extends State<SendInformationWidget> {
                   'assets/logo.png',
                   height: 60,
                 ),
-                title: Text('Insert your name'),
-                subtitle: TextField(
+                subtitle: TextFormField(
+                  decoration: InputDecoration(
+                      labelStyle: TextStyle(color: Colors.amberAccent),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.amberAccent, width: 2),
+                      ),
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      labelText: 'Enter your name',
+                      hintText: 'No name set'),
                   onChanged: (newValue) {
                     setState(() {
                       _name = newValue;
@@ -105,13 +112,40 @@ class _SendInformationWidgetState extends State<SendInformationWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       TextFormField(
+                        decoration: InputDecoration(
+                          labelStyle: TextStyle(color: Colors.amberAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.amberAccent,
+                              width: 2,
+                            ),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          labelText: 'Enter username',
+                          hintText: 'No username set',
+                        ),
                         onChanged: (newValue) {
                           setState(() {
                             _firstField = newValue.isNotEmpty ? newValue : null;
                           });
                         },
                       ),
-                      TextField(
+                      Container(
+                        height: 10,
+                      ),
+                      TextFormField(
+                        decoration: InputDecoration(
+                          labelStyle: TextStyle(color: Colors.amberAccent),
+                          focusedBorder: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.amberAccent,
+                              width: 2,
+                            ),
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          labelText: 'Enter content',
+                          hintText: 'No content',
+                        ),
                         onChanged: (newValue) {
                           setState(() {
                             _secondField = newValue.isNotEmpty ? newValue : null;
@@ -127,42 +161,44 @@ class _SendInformationWidgetState extends State<SendInformationWidget> {
                 RaisedButton(
                   elevation: 20,
                   color: Colors.lightBlue[100],
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   onPressed: () async {
                     final result = await _httpService.getHelloFromBackend(name: _name);
                     setState(() {
                       _greeting = result + '  🎉';
                     });
                   },
-                  child: Text(
-                    'Greet',
-                  ),
+                  child: Text('Greet'),
                 ),
                 RaisedButton(
                   elevation: 20,
                   color: Colors.lightBlue[100],
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
                   onPressed: () {
                     setState(() {
                       _greeting = null;
                     });
                   },
-                  child: Text(
-                    'Reset',
-                  ),
+                  child: Text('Reset'),
                 ),
                 RaisedButton(
                   elevation: 20,
                   disabledColor: Colors.grey[300],
                   disabledElevation: 0,
                   color: Colors.lightBlue[100],
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                  onPressed: (_firstField != null && _secondField != null) ? () async {
-                    await _httpService.sendNewContent(_firstField, _secondField);
-                  } : null,
-                  child: Text(
-                    'Send data',
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
                   ),
+                  onPressed: (_firstField != null && _secondField != null)
+                      ? () async {
+                          await _httpService.sendNewContent(_firstField, _secondField);
+                        }
+                      : null,
+                  child: Text('Send data'),
                 ),
               ],
             )
@@ -174,7 +210,7 @@ class _SendInformationWidgetState extends State<SendInformationWidget> {
 
   @override
   void initState() {
-    // _httpService = HttpService(baseUri: '<expose with ngrok http 5000>');
+    _httpService = HttpService(baseUri: '<expose with ngrok http 5000>');
     super.initState();
   }
 }
