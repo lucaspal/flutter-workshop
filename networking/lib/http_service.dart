@@ -17,8 +17,8 @@ class HttpService {
   Future<bool> sendNewContent(String username, String content) async {
     final body = {
       'sessionId': sessionId,
-      'username': username,
-      'content': content,
+      'username': username.trim(),
+      'content': content.trim(),
     };
 
     final response = await http.post('$baseUri/user-details/new', body: body);
@@ -27,7 +27,7 @@ class HttpService {
   }
 
   Future<String> getHelloFromBackend({String name}) async {
-    final response = await http.get('$baseUri/hello?name=$name');
+    final response = await http.get('$baseUri/hello?name=${name ?? ''}');
     return jsonDecode(response.body)['dataString'];
   }
 }
